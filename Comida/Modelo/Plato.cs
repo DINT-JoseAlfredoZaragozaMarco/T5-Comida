@@ -34,6 +34,18 @@ namespace Comida.Modelo
             }
         }
 
+        private string nacionalidad;
+
+        public string Nacionalidad
+        {
+            get { return nacionalidad; }
+            set
+            {
+                nacionalidad = value;
+                NotifyPropertyChanged("Nacionalidad");
+            }
+        }
+
         private bool gluten;
 
         public bool Gluten
@@ -82,9 +94,15 @@ namespace Comida.Modelo
             }
         }
 
-        public Plato()
+        public Plato(string comida, string imagen, string nacionalidad, bool gluten, bool soja, bool leche, bool sulfitos)
         {
-              
+            this.Comida = comida;
+            this.Imagen = imagen;
+            this.Nacionalidad = nacionalidad;
+            this.Gluten = gluten;
+            this.Soja = soja;
+            this.Leche = leche;
+            this.Sulfitos = sulfitos;
         }
 
         public void NotifyPropertyChanged(string propertyName)

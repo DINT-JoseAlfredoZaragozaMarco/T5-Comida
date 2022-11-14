@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Comida.Modelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace Comida
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowVM vistamodelo = new MainWindowVM();
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = vistamodelo;
         }
     }
 }

@@ -8,25 +8,38 @@
         Title="Comida" Height="450" Width="800">
 
     <Window.Resources>
+        <Style TargetType="{x:Type Image}" x:Key="VisibleImagen">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Gluten}" Value="True">
+                    <Setter Property="Visibility"  Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Soja}" Value="True">
+                    <Setter Property="Visibility"  Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <DataTemplate x:Key="ListaComida">
-            <WrapPanel>
-                <Border>
-                    <StackPanel>
-                        <TextBlock></TextBlock>
-                        <Image></Image>
-                        <DockPanel LastChildFill="False">
-                            <Image DockPanel.Dock="Left"></Image>
-                            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                                <Image></Image>
-                                <Image></Image>
-                                <Image></Image>
-                                <Image></Image>
-                            </StackPanel>
-                        </DockPanel>
-                    </StackPanel>
-                </Border>
-            </WrapPanel>
+            <Border BorderThickness="2"  BorderBrush="Black" Margin="5">
+                <StackPanel>
+                    <TextBlock Text="{Binding Path=Comida}" FontFamily="Slim Summer" FontSize="20"></TextBlock>
+                    <Image Source="{Binding Path=Imagen}" Width="200" Height="200" Stretch="UniformToFill"></Image>
+                    <DockPanel LastChildFill="False">
+                        <Image DockPanel.Dock="Left"></Image>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                            <Image x:Name="glutenImage" Source="assets/gluten.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
+                            <Image x:Name="sojaImage" Source="assets/soybean.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
+                            <Image x:Name="lecheImage" Source="assets/milk.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
+                            <Image x:Name="sulfitosImage" Source="assets/sulfide.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </Border>
         </DataTemplate>
+        
+        
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="Width" Value="100"/>
+        </Style>
     </Window.Resources>
     
     <DockPanel>
@@ -48,7 +61,13 @@
             <Button Width="150" FontSize="16" Margin="10" Background="AliceBlue">Limpiar selección</Button>
         </StackPanel>
         <Border Margin="10" BorderBrush="Black" BorderThickness="1">
-            <ListBox ItemTemplate="{StaticResource ListaComida}"></ListBox>
+            <ListBox ItemTemplate="{StaticResource ListaComida}" ItemsSource="{Binding Path=Platos}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
         </Border>
     </DockPanel>
 </Window>
