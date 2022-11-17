@@ -24,9 +24,35 @@ namespace Comida.Modelo
             }
         }
 
+        private ObservableCollection<String> tipos;
+
+        public ObservableCollection<String> Tipos
+        {
+            get { return tipos; }
+            set
+            {
+                tipos = value;
+                NotifyPropertyChanged("Tipos");
+            }
+        }
+
+        private Plato comidaSeleccionada;
+
+        public Plato ComidaSeleccionada
+        {
+            get { return comidaSeleccionada; }
+            set 
+            { 
+                comidaSeleccionada = value;
+                NotifyPropertyChanged("ComidaSeleccionada");
+            }
+        }
+
+
         public MainWindowVM()
         {
             Platos = new ObservableCollection<Plato>();
+            Tipos = new ObservableCollection<string>();
 
             Plato hamburguesa = new Plato("Hamburguesa", "assets/burguer.jpg", "USA", true, false, true, true);
             Plato dumplings = new Plato("Dumplings", "assets/dumplings.jpg", "China", true, true, false, false);
@@ -41,6 +67,10 @@ namespace Comida.Modelo
             Platos.Add(cerdoAgridulce);
             Platos.Add(hotDogs);
             Platos.Add(fajitas);
+
+            Tipos.Add("USA");
+            Tipos.Add("China");
+            Tipos.Add("Mexico");
         }
 
         public void NotifyPropertyChanged(string propertyName)

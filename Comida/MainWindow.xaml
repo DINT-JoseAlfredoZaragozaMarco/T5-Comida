@@ -104,23 +104,23 @@
     <DockPanel>
         <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Background="#DDDDDD">
             <TextBlock FontSize="15" Margin="10">Nombre del plato</TextBlock>
-            <TextBox FontSize="15" Margin="5"></TextBox>
+            <TextBox FontSize="15" Margin="5" Text="{Binding Path=ComidaSeleccionada.Comida, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBlock FontSize="15" Margin="5">Foto del plato</TextBlock>
-            <TextBox FontSize="15" Margin="5"></TextBox>
+            <TextBox FontSize="15" Margin="5" Text="{Binding Path=ComidaSeleccionada.Imagen}" ></TextBox>
             <TextBlock FontSize="15" Margin="5">Tipo de comida</TextBlock>
-            <ComboBox FontSize="15" Margin="5"></ComboBox>
+            <ComboBox FontSize="15" Margin="5" ItemsSource="{Binding Path=Tipos}" SelectedValue="{Binding Path=ComidaSeleccionada.Nacionalidad}"></ComboBox>
             <GroupBox Header="Alérgenos" Margin="5" BorderBrush="Black">
                 <UniformGrid Margin="10">
-                    <CheckBox Margin="5">Leche</CheckBox>
-                    <CheckBox Margin="5">Soja</CheckBox>
-                    <CheckBox Margin="5">Glutén</CheckBox>
-                    <CheckBox Margin="5">Sulfitos</CheckBox>
+                    <CheckBox Margin="5" IsChecked="{Binding Path=ComidaSeleccionada.Leche}">Leche</CheckBox>
+                    <CheckBox Margin="5" IsChecked="{Binding Path=ComidaSeleccionada.Soja}">Soja</CheckBox>
+                    <CheckBox Margin="5" IsChecked="{Binding Path=ComidaSeleccionada.Gluten}">Glutén</CheckBox>
+                    <CheckBox Margin="5" IsChecked="{Binding Path=ComidaSeleccionada.Sulfitos}">Sulfitos</CheckBox>
                 </UniformGrid>
             </GroupBox>
             <Button Width="150" FontSize="16" Margin="10" Background="AliceBlue">Limpiar selección</Button>
         </StackPanel>
         <Border Margin="10" BorderBrush="Black" BorderThickness="1">
-            <ListBox ItemTemplate="{StaticResource ListaComida}" ItemsSource="{Binding Path=Platos}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox ItemTemplate="{StaticResource ListaComida}" ItemsSource="{Binding Path=Platos}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedItem="{Binding Path=ComidaSeleccionada}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel></WrapPanel>
