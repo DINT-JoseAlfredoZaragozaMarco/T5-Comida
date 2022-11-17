@@ -30,10 +30,10 @@ namespace Comida.Modelo
 
             Plato hamburguesa = new Plato("Hamburguesa", "assets/burguer.jpg", "USA", true, false, true, true);
             Plato dumplings = new Plato("Dumplings", "assets/dumplings.jpg", "China", true, true, false, false);
-            Plato tacos = new Plato("Tacos", "assets/tacos.jpg", "USA", true, false, false, true);
-            Plato cerdoAgridulce = new Plato("Cerdo Agridulce", "assets/cerdoagridulce.jpg", "USA", true, true, false, true);
+            Plato tacos = new Plato("Tacos", "assets/tacos.jpg", "Mexico", true, false, false, true);
+            Plato cerdoAgridulce = new Plato("Cerdo Agridulce", "assets/cerdoagridulce.jpg", "China", true, true, false, true);
             Plato hotDogs = new Plato("Hot Dogs", "assets/hotdog.jpg", "USA", true, true, true, true);
-            Plato fajitas = new Plato("Fajitas", "assets/fajitas.jpg", "USA", true, false, false, true);
+            Plato fajitas = new Plato("Fajitas", "assets/fajitas.jpg", "Mexico", true, false, false, true);
 
             Platos.Add(hamburguesa);
             Platos.Add(dumplings);

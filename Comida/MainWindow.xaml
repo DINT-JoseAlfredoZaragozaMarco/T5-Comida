@@ -8,42 +8,101 @@
         Title="Comida" Height="450" Width="800">
 
     <Window.Resources>
-        <Style TargetType="{x:Type Image}" x:Key="VisibleImagen">
+        <Style TargetType="{x:Type TextBlock}" x:Key="Fuente">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Nacionalidad}" Value="USA">
+                    <Setter Property="FontFamily" Value="Slim Summer"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Nacionalidad}" Value="China">
+                    <Setter Property="FontFamily" Value="Chinese Wok Food St"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Nacionalidad}" Value="Mexico">
+                    <Setter Property="FontFamily" Value="Taco Salad"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="GlutenVisible">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Gluten}" Value="True">
                     <Setter Property="Visibility"  Value="Visible"/>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Gluten}" Value="False">
+                    <Setter Property="Visibility"  Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="SojaVisible">
+            <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Soja}" Value="True">
                     <Setter Property="Visibility"  Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Soja}" Value="False">
+                    <Setter Property="Visibility"  Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="LecheVisible">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Leche}" Value="True">
+                    <Setter Property="Visibility"  Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Leche}" Value="False">
+                    <Setter Property="Visibility"  Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="SulfitosVisible">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Sulfitos}" Value="True">
+                    <Setter Property="Visibility"  Value="Visible"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Sulfitos}" Value="False">
+                    <Setter Property="Visibility"  Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Image}" x:Key="ComidaPais">
+            <Setter Property="Width" Value="50"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Nacionalidad}" Value="USA">
+                    <Setter Property="Source" Value="./assets/united_states.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Nacionalidad}" Value="China">
+                    <Setter Property="Source" Value="./assets/china.png"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=Nacionalidad}" Value="Mexico">
+                    <Setter Property="Source" Value="./assets/mexico.png"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         <DataTemplate x:Key="ListaComida">
-            <Border BorderThickness="2"  BorderBrush="Black" Margin="5">
-                <StackPanel>
-                    <TextBlock Text="{Binding Path=Comida}" FontFamily="Slim Summer" FontSize="20"></TextBlock>
+            <Border BorderThickness="1"  BorderBrush="Black" Margin="10" Width="250" Background="AliceBlue">
+                <Border.Effect>
+                    <DropShadowEffect></DropShadowEffect>
+                </Border.Effect>
+                <StackPanel Margin="10">
+                    <Viewbox Height="50">
+                        <TextBlock Text="{Binding Path=Comida}" Style="{StaticResource Fuente}"></TextBlock>
+                    </Viewbox>
                     <Image Source="{Binding Path=Imagen}" Width="200" Height="200" Stretch="UniformToFill"></Image>
                     <DockPanel LastChildFill="False">
-                        <Image DockPanel.Dock="Left"></Image>
+                        <Image DockPanel.Dock="Left" Style="{StaticResource ComidaPais}"></Image>
                         <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                            <Image x:Name="glutenImage" Source="assets/gluten.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
-                            <Image x:Name="sojaImage" Source="assets/soybean.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
-                            <Image x:Name="lecheImage" Source="assets/milk.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
-                            <Image x:Name="sulfitosImage" Source="assets/sulfide.png" Width="25" Height="50" Style="{StaticResource VisibleImagen}"></Image>
+                            <Image x:Name="glutenImage" Source="assets/gluten.png" Width="25" Height="50" Style="{StaticResource GlutenVisible}"></Image>
+                            <Image x:Name="sojaImage" Source="assets/soybean.png" Width="25" Height="50" Style="{StaticResource SojaVisible}"></Image>
+                            <Image x:Name="lecheImage" Source="assets/milk.png" Width="25" Height="50" Style="{StaticResource LecheVisible}"></Image>
+                            <Image x:Name="sulfitosImage" Source="assets/sulfide.png" Width="25" Height="50" Style="{StaticResource SulfitosVisible}"></Image>
                         </StackPanel>
                     </DockPanel>
                 </StackPanel>
             </Border>
         </DataTemplate>
-        
-        
-        <Style TargetType="{x:Type Image}">
-            <Setter Property="Width" Value="100"/>
-        </Style>
     </Window.Resources>
     
     <DockPanel>
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Width="200" Background="#DDDDDD">
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Background="#DDDDDD">
             <TextBlock FontSize="15" Margin="10">Nombre del plato</TextBlock>
             <TextBox FontSize="15" Margin="5"></TextBox>
             <TextBlock FontSize="15" Margin="5">Foto del plato</TextBlock>
