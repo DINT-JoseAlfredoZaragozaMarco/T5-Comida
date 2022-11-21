@@ -77,5 +77,10 @@ namespace Comida.Modelo
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public void LimipiaSeleccion()
+        {
+            this.ComidaSeleccionada = null;
+        }
     }
 }

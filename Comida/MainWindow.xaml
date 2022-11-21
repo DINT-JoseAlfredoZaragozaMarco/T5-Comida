@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Comida"
         mc:Ignorable="d"
+        Icon="./assets/fruit_food_apple.ico"
         Title="Comida" Height="450" Width="800">
 
     <Window.Resources>
+        
         <Style TargetType="{x:Type TextBlock}" x:Key="Fuente">
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="TextAlignment" Value="Center"/>
@@ -117,7 +119,7 @@
                     <CheckBox Margin="5" IsChecked="{Binding Path=ComidaSeleccionada.Sulfitos}">Sulfitos</CheckBox>
                 </UniformGrid>
             </GroupBox>
-            <Button Width="150" FontSize="16" Margin="10" Background="AliceBlue">Limpiar selección</Button>
+            <Button Width="150" FontSize="16" Margin="10" Background="AliceBlue" Click="Button_Click">Limpiar selección</Button>
         </StackPanel>
         <Border Margin="10" BorderBrush="Black" BorderThickness="1">
             <ListBox ItemTemplate="{StaticResource ListaComida}" ItemsSource="{Binding Path=Platos}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectedItem="{Binding Path=ComidaSeleccionada}">

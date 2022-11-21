@@ -27,5 +27,10 @@ namespace Comida
             InitializeComponent();
             this.DataContext = vistamodelo;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            vistamodelo.LimipiaSeleccion();
+        }
     }
 }
